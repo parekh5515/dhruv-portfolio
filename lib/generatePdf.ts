@@ -17,11 +17,11 @@ export const generateBiodataPdf = async () => {
 
   // 1. Draw premium header background
   doc.setFillColor(...primaryColor);
-  doc.rect(0, 0, 210, 45, "F");
+  doc.rect(0, 0, 210, 32, "F");
 
   // 2. Draw gold accent strip at the bottom of header
   doc.setFillColor(...accentColor);
-  doc.rect(0, 45, 210, 2, "F");
+  doc.rect(0, 32, 210, 2, "F");
 
   // Helper to load image properly (SVG or PNG) via canvas with circular clipping and object-fit: cover
   const getBase64ImageFromURL = (url: string): Promise<string> => {
@@ -74,7 +74,7 @@ export const generateBiodataPdf = async () => {
     try {
       const imgData = await getBase64ImageFromURL("/dhruv.svg");
       // Add a white circle/box behind the image if needed, or just draw
-      doc.addImage(imgData, "PNG", 160, 5, 35, 35);
+      doc.addImage(imgData, "PNG", 168, 4, 24, 24);
     } catch (e) {
       console.warn("Could not load image into PDF", e);
     }
@@ -82,7 +82,7 @@ export const generateBiodataPdf = async () => {
     // 4. Header Text (Left aligned in the maroon box)
     doc.setFont("helvetica", "bold");
     doc.setTextColor(255, 255, 255);
-    doc.setFontSize(26);
+    doc.setFontSize(22);
     doc.text(biodata.name, 15, 20);
 
     doc.setFont("helvetica", "italic");
@@ -91,23 +91,23 @@ export const generateBiodataPdf = async () => {
     // doc.text(`"${biodata.tagline}"`, 15, 30);
 
     // Initial Y position for content
-    let y = 60;
+    let y = 43;
 
     // Custom table rendering options
     const tableOptions = {
       margin: { left: 15, right: 15 },
       theme: "plain" as const,
-      styles: { cellPadding: 3, fontSize: 10, textColor: textColor, lineColor: [220, 220, 220] as [number, number, number], lineWidth: 0.1 },
+      styles: { cellPadding: 2.2, fontSize: 10, textColor: textColor, lineColor: [220, 220, 220] as [number, number, number], lineWidth: 0.1 },
       columnStyles: {
         0: { fontStyle: "bold" as const, textColor: primaryColor, cellWidth: 55 },
-        1: { cellWidth: 110 },
+        1: { cellWidth: 125 },
       },
     };
 
     // --- Section: Contact & Personal Details ---
     doc.setFont("helvetica", "bold");
     doc.setTextColor(...primaryColor);
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.text("Personal & Contact Details", 15, y);
     y += 4;
 
@@ -130,12 +130,12 @@ export const generateBiodataPdf = async () => {
       body: personalData,
     });
 
-    y = (doc as any).lastAutoTable.finalY + 12;
+    y = (doc as any).lastAutoTable.finalY + 8;
 
     // --- Section: Education & Career ---
     doc.setFont("helvetica", "bold");
     doc.setTextColor(...primaryColor);
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.text("Education & Career", 15, y);
     y += 4;
 
@@ -151,12 +151,12 @@ export const generateBiodataPdf = async () => {
       body: eduBody,
     });
 
-    y = (doc as any).lastAutoTable.finalY + 12;
+    y = (doc as any).lastAutoTable.finalY + 8;
 
     // --- Section: Family Background ---
     doc.setFont("helvetica", "bold");
     doc.setTextColor(...primaryColor);
-    doc.setFontSize(14);
+    doc.setFontSize(13);
     doc.text("Family Background", 15, y);
     y += 4;
 
@@ -164,6 +164,23 @@ export const generateBiodataPdf = async () => {
       ...tableOptions,
       startY: y,
       body: biodata.family.map((item) => [item.relation, `${item.name}\n${item.role}`]),
+    });
+
+    y = (doc as any).lastAutoTable.finalY + 8;
+
+    // --- Section: Hobbies & Interests ---
+    doc.setFont("helvetica", "bold");
+    doc.setTextColor(...primaryColor);
+    doc.setFontSize(13);
+    doc.text("Hobbies & Interests", 15, y);
+    y += 4;
+
+    const hobbiesText = biodata.hobbies.map(h => h.name).join(", ");
+    
+    autoTable(doc, {
+      ...tableOptions,
+      startY: y,
+      body: [["Hobbies", hobbiesText]],
     });
 
     // 5. Add a Footer border
