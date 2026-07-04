@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import NextImage from "next/image";
 import { biodata } from "@/lib/biodata";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Download } from "lucide-react";
 
 const floatingVariants = {
   animate: {
@@ -30,6 +30,17 @@ const fadeUp = {
 };
 
 export default function Hero() {
+  const handleDownloadPdf = async () => {
+    try {
+      // Dynamically import the PDF generator to avoid SSR window issues
+      const { generateBiodataPdf } = await import('@/lib/generatePdf');
+      await generateBiodataPdf();
+    } catch (err) {
+      console.error("Failed to generate PDF", err);
+      alert("Failed to download PDF. Please try again.");
+    }
+  };
+
   return (
     <section
       id="hero"
@@ -194,8 +205,27 @@ export default function Hero() {
           &ldquo;{biodata.tagline}&rdquo;
         </motion.p>
 
+        {/* Download PDF Button */}
+        <motion.div variants={fadeUp} className="mt-8 flex justify-center no-print">
+          <button
+            onClick={handleDownloadPdf}
+            className="group relative inline-flex items-center gap-2 px-8 py-3 overflow-hidden rounded-full font-body font-medium transition-all hover:scale-105 active:scale-95 cursor-pointer"
+            style={{ 
+              backgroundColor: "#7A1F3D", 
+              color: "#FFF8F0",
+              boxShadow: "0 10px 30px -10px rgba(122, 31, 61, 0.5)"
+            }}
+          >
+            <span className="absolute inset-0 w-full h-full -mt-1 rounded-lg opacity-30 bg-gradient-to-b from-transparent via-transparent to-black" />
+            <span className="relative flex items-center gap-2">
+              <Download size={18} />
+              Download PDF
+            </span>
+          </button>
+        </motion.div>
+
         {/* Scroll indicator */}
-        <motion.div variants={fadeUp} className="mt-16 md:mt-20">
+        <motion.div variants={fadeUp} className="mt-12 md:mt-16 no-print">
           <motion.button
             onClick={() =>
               document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })

@@ -4,13 +4,7 @@ import { motion } from "framer-motion";
 import { biodata } from "@/lib/biodata";
 import SectionWrapper from "./SectionWrapper";
 import SectionTitle from "./SectionTitle";
-import * as LucideIcons from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-
-function getIcon(iconName: string): LucideIcon {
-  const icons = LucideIcons as unknown as Record<string, LucideIcon>;
-  return icons[iconName] || LucideIcons.Circle;
-}
+import NextImage from "next/image";
 
 export default function FamilyDetails() {
   return (
@@ -18,7 +12,6 @@ export default function FamilyDetails() {
       <SectionTitle title="Family" subtitle="The pillars of my life" />
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-4xl mx-auto">
         {biodata.family.map((member, index) => {
-          const Icon = getIcon(member.icon);
           return (
             <motion.div
               key={member.name}
@@ -30,10 +23,17 @@ export default function FamilyDetails() {
               className="card-glass rounded-2xl p-6 md:p-8 text-center group cursor-default"
             >
               <div
-                className="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300"
-                style={{ background: "rgba(122,31,61,0.08)" }}
+                className="w-36 h-36 mx-auto rounded-full overflow-hidden flex items-center justify-center mb-5 group-hover:scale-105 transition-transform duration-300 shadow-lg"
+                style={{ border: "3px solid #D4AF37", padding: "4px", background: "rgba(122,31,61,0.05)" }}
               >
-                <Icon size={24} style={{ color: "#7A1F3D" }} />
+                <div className="relative w-full h-full rounded-full overflow-hidden">
+                  <NextImage
+                    src={member.image || "/dhruv.svg"}
+                    alt={member.name}
+                    fill
+                    className="object-cover object-[center_10%]"
+                  />
+                </div>
               </div>
               <p className="label-caps mb-2" style={{ color: "#D4AF37" }}>{member.relation}</p>
               <h3 className="font-display text-lg md:text-xl font-semibold leading-snug mb-2" style={{ color: "#7A1F3D" }}>

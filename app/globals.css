@@ -10,8 +10,8 @@
   --color-maroon-500: #e33c62;
   --color-maroon-600: #c41d47;
   --color-maroon-700: #a11339;
-  --color-maroon-800: #7A1F3D;
-  --color-maroon-900: #5C0427;
+  --color-maroon-800: #7a1f3d;
+  --color-maroon-900: #5c0427;
   --color-maroon-950: #3f0018;
 
   /* ── Gold / Accent ── */
@@ -19,20 +19,20 @@
   --color-gold-100: #faf0c3;
   --color-gold-200: #f5e08a;
   --color-gold-300: #eece4e;
-  --color-gold-400: #D4AF37;
-  --color-gold-500: #C19A2E;
+  --color-gold-400: #d4af37;
+  --color-gold-500: #c19a2e;
   --color-gold-600: #a17b22;
   --color-gold-700: #805c1c;
   --color-gold-800: #6b4b1f;
   --color-gold-900: #5c3f20;
 
   /* ── Ivory / Neutral Warm ── */
-  --color-ivory-50: #FFFCF7;
-  --color-ivory-100: #FFF8F0;
-  --color-ivory-200: #FFF0E0;
-  --color-ivory-300: #F5E6D3;
-  --color-ivory-400: #E8D5C0;
-  --color-ivory-500: #D4C0A8;
+  --color-ivory-50: #fffcf7;
+  --color-ivory-100: #fff8f0;
+  --color-ivory-200: #fff0e0;
+  --color-ivory-300: #f5e6d3;
+  --color-ivory-400: #e8d5c0;
+  --color-ivory-500: #d4c0a8;
 
   /* ── Charcoal / Text ── */
   --color-charcoal-50: #f5f5f5;
@@ -43,7 +43,7 @@
   --color-charcoal-500: #554245;
   --color-charcoal-600: #444444;
   --color-charcoal-700: #333333;
-  --color-charcoal-800: #2B2B2B;
+  --color-charcoal-800: #2b2b2b;
   --color-charcoal-900: #1a1a1a;
 
   /* ── Fonts ── */
@@ -62,20 +62,20 @@ html {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #FFF8F0;
+  background: #fff8f0;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #D4AF37, #C19A2E);
+  background: linear-gradient(180deg, #d4af37, #c19a2e);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #7A1F3D;
+  background: #7a1f3d;
 }
 
 /* ── Body ── */
 body {
-  background: #FFF8F0;
-  color: #2B2B2B;
+  background: #fff8f0;
+  color: #2b2b2b;
   font-family: var(--font-body);
   overflow-x: hidden;
 }
@@ -83,12 +83,18 @@ body {
 /* ── Selection ── */
 ::selection {
   background: rgba(212, 175, 55, 0.35);
-  color: #5C0427;
+  color: #5c0427;
 }
 
 /* ── Gold Gradient Text ── */
 .text-gradient-gold {
-  background: linear-gradient(135deg, #D4AF37 0%, #E9C349 40%, #D4AF37 60%, #C19A2E 100%);
+  background: linear-gradient(
+    135deg,
+    #d4af37 0%,
+    #e9c349 40%,
+    #d4af37 60%,
+    #c19a2e 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -100,12 +106,16 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid rgba(212, 175, 55, 0.2);
-  box-shadow: 0 4px 24px rgba(122, 31, 61, 0.06), 0 1px 3px rgba(43, 43, 43, 0.04);
+  box-shadow:
+    0 4px 24px rgba(122, 31, 61, 0.06),
+    0 1px 3px rgba(43, 43, 43, 0.04);
   transition: all 0.3s ease;
 }
 .card-glass:hover {
   border-color: rgba(212, 175, 55, 0.5);
-  box-shadow: 0 8px 40px rgba(212, 175, 55, 0.14), 0 2px 8px rgba(122, 31, 61, 0.06);
+  box-shadow:
+    0 8px 40px rgba(212, 175, 55, 0.14),
+    0 2px 8px rgba(122, 31, 61, 0.06);
   transform: translateY(-2px);
 }
 
@@ -123,7 +133,12 @@ body {
   content: "";
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, #D4AF37 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #d4af37 50%,
+    transparent 100%
+  );
 }
 
 /* ── Background Mandala Pattern ── */
@@ -144,7 +159,7 @@ body {
 /* ── Section Title ── */
 .section-title {
   font-family: var(--font-display);
-  color: #7A1F3D;
+  color: #7a1f3d;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -161,5 +176,25 @@ body {
 
 /* ── Alternating Section Backgrounds ── */
 .section-warm {
-  background: linear-gradient(180deg, rgba(245, 230, 211, 0.3) 0%, rgba(255, 248, 240, 0.5) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(245, 230, 211, 0.3) 0%,
+    rgba(255, 248, 240, 0.5) 100%
+  );
+}
+
+/* ── Image Gallery Slider ── */
+@keyframes scroll-marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 1rem)); } /* -50% because we duplicate the items */
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: scroll-marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

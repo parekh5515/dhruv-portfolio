@@ -9,6 +9,7 @@ import EducationTimeline from "@/components/EducationTimeline";
 import Occupation from "@/components/Occupation";
 import FamilyDetails from "@/components/FamilyDetails";
 import Hobbies from "@/components/Hobbies";
+import ImageGallery from "@/components/ImageGallery";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
         <Occupation />
         <FamilyDetails />
         <Hobbies />
+        <ImageGallery />
         <ContactInfo />
       </main>
       <Footer />

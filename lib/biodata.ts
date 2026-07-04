@@ -17,6 +17,7 @@ export interface FamilyMember {
   relation: string;
   role: string;
   icon: string;
+  image?: string;
 }
 
 export interface Hobby {
@@ -90,18 +91,21 @@ export const biodata: Biodata = {
       relation: "Father",
       role: "Hair Stylist & Owner of Visat Hair & Beauty Salon, Kalol",
       icon: "User",
+      image: "/alpesh.svg",
     },
     {
       name: "Hetalben Alpeshkumar Parekh",
       relation: "Mother",
       role: "Homemaker",
       icon: "User",
+      image: "/hetal.svg",
     },
     {
       name: "Vedant Alpeshkumar Parekh",
       relation: "Younger Brother",
       role: "Younger Brother",
       icon: "User",
+      image: "/vedant.svg",
     },
   ],
   hobbies: [
