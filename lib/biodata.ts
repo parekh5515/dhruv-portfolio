@@ -57,13 +57,14 @@ export const biodata: Biodata = {
     { icon: "Flag", label: "Citizenship", value: "Indian" },
     { icon: "BadgeCheck", label: "Current Status", value: "Work Permit Holder (Canada)" },
     { icon: "Languages", label: "Languages Known", value: "English, Gujarati, Hindi" },
-    { icon: "MapPin", label: "Native Place", value: "Rupal, Gandhinagar, Gujarat" },
+    { icon: "MapPin", label: "Native Place", value: "Kalol, Gandhinagar" },
+    { icon: "Map", label: "Maternal Native (Mosal)", value: "Rupal, Gandhinagar" },
     { icon: "Home", label: "Current Residence", value: "Niagara Falls, Ontario, Canada" },
   ],
   contactInfo: {
-    mobile: "+1 (437) 933-8851",
+    mobile: "+91 9998033450",
     email: "dhruvparekh6dec@gmail.com",
-    whatsapp: "+14379338851",
+    whatsapp: "+919998033450",
   },
   education: [
     {
@@ -87,7 +88,7 @@ export const biodata: Biodata = {
     {
       name: "Alpeshkumar Pravinchandra Parekh",
       relation: "Father",
-      role: "Hair Stylist",
+      role: "Hair Stylist & Owner of Visat Hair & Beauty Salon, Kalol",
       icon: "User",
     },
     {
