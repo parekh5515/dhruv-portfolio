@@ -19,7 +19,7 @@ export default function SectionWrapper({
   return (
     <section
       id={id}
-      className={`relative py-20 md:py-[var(--spacing-section)] px-6 ${className}`}
+      className={`relative py-24 md:py-32 px-6 ${className}`}
     >
       <motion.div
         initial={{ opacity: 0, y: 40 }}

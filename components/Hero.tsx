@@ -125,22 +125,37 @@ export default function Hero() {
               style={{ border: "1px dashed rgba(212, 175, 55, 0.12)" }}
             />
             {/* Photo circle with strong gold border */}
-            <div
-              className="w-36 h-36 md:w-44 md:h-44 rounded-full flex items-center justify-center overflow-hidden"
+            <motion.div
+              animate={{
+                y: [-5, 5, -5],
+                boxShadow: [
+                  "0 0 40px rgba(212, 175, 55, 0.2), 0 0 80px rgba(212, 175, 55, 0.08)",
+                  "0 0 60px rgba(212, 175, 55, 0.4), 0 0 100px rgba(212, 175, 55, 0.15)",
+                  "0 0 40px rgba(212, 175, 55, 0.2), 0 0 80px rgba(212, 175, 55, 0.08)"
+                ]
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="w-36 h-36 md:w-44 md:h-44 rounded-full flex items-center justify-center overflow-hidden relative z-10"
               style={{
                 border: "3px solid #D4AF37",
-                boxShadow: "0 0 40px rgba(212, 175, 55, 0.2), 0 0 80px rgba(212, 175, 55, 0.08)",
               }}
             >
-              <NextImage
-                src="/dhruv.png"
-                alt="Dhruv Alpeshkumar Parekh"
-                width={176}
-                height={176}
-                className="w-full h-full object-cover"
-                priority
-              />
-            </div>
+              <motion.div
+                initial={{ scale: 1.15 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 1.5, ease: "easeOut" }}
+                className="w-full h-full"
+              >
+                <NextImage
+                  src="/dhruv.svg"
+                  alt="Dhruv Alpeshkumar Parekh"
+                  width={176}
+                  height={176}
+                  className="w-full h-full object-cover"
+                  priority
+                />
+              </motion.div>
+            </motion.div>
             {/* Corner ornaments — gold */}
             <div style={{ borderColor: "#D4AF37" }} className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 rounded-tl-sm" />
             <div style={{ borderColor: "#D4AF37" }} className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 rounded-tr-sm" />

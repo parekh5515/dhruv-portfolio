@@ -19,11 +19,11 @@ export default function Home() {
         <Hero />
         <AboutMe />
         <PersonalDetails />
-        <ContactInfo />
         <EducationTimeline />
         <Occupation />
         <FamilyDetails />
         <Hobbies />
+        <ContactInfo />
       </main>
       <Footer />
     </div>

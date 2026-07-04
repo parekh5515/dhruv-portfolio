@@ -30,8 +30,16 @@ export default function Navbar() {
 
   const handleLinkClick = (href: string) => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+    
+    // Use setTimeout to ensure the mobile menu close animation doesn't interfere
+    setTimeout(() => {
+      const el = document.querySelector(href);
+      if (el) {
+        const offset = window.innerWidth < 768 ? 64 : 80; // 64px mobile header, 80px desktop
+        const y = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }, 100);
   };
 
   return (

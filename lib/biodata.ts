@@ -88,19 +88,19 @@ export const biodata: Biodata = {
       name: "Alpeshkumar Pravinchandra Parekh",
       relation: "Father",
       role: "Hair Stylist",
-      icon: "Briefcase",
+      icon: "User",
     },
     {
       name: "Hetalben Alpeshkumar Parekh",
       relation: "Mother",
       role: "Homemaker",
-      icon: "Home",
+      icon: "User",
     },
     {
       name: "Vedant Alpeshkumar Parekh",
       relation: "Younger Brother",
       role: "Younger Brother",
-      icon: "UserPlus",
+      icon: "User",
     },
   ],
   hobbies: [
