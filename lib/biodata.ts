@@ -61,6 +61,7 @@ export const biodata: Biodata = {
     { icon: "Languages", label: "Languages Known", value: "English, Gujarati, Hindi" },
     { icon: "MapPin", label: "Native Place", value: "Kalol, Gandhinagar" },
     { icon: "Map", label: "Maternal Native (Mosal)", value: "Rupal, Gandhinagar" },
+    { icon: "MapPin", label: "Permanent Address", value: "11 Madhav Bungalow, B/H  D-Mart, New Panchvati Area, Kalol" },
     { icon: "Home", label: "Current Residence", value: "Niagara Falls, Ontario, Canada" },
   ],
   contactInfo: [

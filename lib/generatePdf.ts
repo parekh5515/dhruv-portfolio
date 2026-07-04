@@ -18,7 +18,7 @@ export const generateBiodataPdf = async () => {
   // 1. Draw premium header background
   doc.setFillColor(...primaryColor);
   doc.rect(0, 0, 210, 45, "F");
-  
+
   // 2. Draw gold accent strip at the bottom of header
   doc.setFillColor(...accentColor);
   doc.rect(0, 45, 210, 2, "F");
@@ -34,7 +34,7 @@ export const generateBiodataPdf = async () => {
         canvas.width = size;
         canvas.height = size;
         const ctx = canvas.getContext("2d");
-        
+
         if (ctx) {
           // Calculate object-fit: cover dimensions
           const scale = Math.max(size / img.width, size / img.height);
@@ -88,7 +88,7 @@ export const generateBiodataPdf = async () => {
     doc.setFont("helvetica", "italic");
     doc.setTextColor(230, 230, 230);
     doc.setFontSize(12);
-    doc.text(`"${biodata.tagline}"`, 15, 30);
+    // doc.text(`"${biodata.tagline}"`, 15, 30);
 
     // Initial Y position for content
     let y = 60;
@@ -119,6 +119,7 @@ export const generateBiodataPdf = async () => {
       ["Height", biodata.personalDetails.find(d => d.label === "Height")?.value || ""],
       ["Religion / Caste", `${biodata.personalDetails.find(d => d.label === "Religion")?.value} - ${biodata.personalDetails.find(d => d.label === "Caste")?.value}`],
       ["Native Place", biodata.personalDetails.find(d => d.label === "Native Place")?.value || ""],
+      ["Permanent Address", biodata.personalDetails.find(d => d.label === "Permanent Address")?.value || ""],
       ["Current Residence", biodata.personalDetails.find(d => d.label === "Current Residence")?.value || ""],
       ["Status", biodata.personalDetails.find(d => d.label === "Current Status")?.value || ""]
     ];
@@ -128,7 +129,7 @@ export const generateBiodataPdf = async () => {
       startY: y,
       body: personalData,
     });
-    
+
     y = (doc as any).lastAutoTable.finalY + 12;
 
     // --- Section: Education & Career ---
