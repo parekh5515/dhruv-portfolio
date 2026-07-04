@@ -72,9 +72,9 @@ export const biodata: Biodata = {
     },
     {
       name: "Alpeshkumar Parekh (Father)",
-      mobile: "+91 9876543210", // Placeholder
+      mobile: "+91 9998033450", // Placeholder
       email: "alpeshkumar@example.com", // Placeholder
-      whatsapp: "+919876543210",
+      whatsapp: "+919998033450",
     }
   ],
   education: [
