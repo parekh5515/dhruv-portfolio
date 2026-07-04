@@ -31,10 +31,11 @@ export interface Biodata {
   about: string;
   personalDetails: PersonalDetail[];
   contactInfo: {
+    name: string;
     mobile: string;
     email: string;
     whatsapp: string;
-  };
+  }[];
   education: EducationEntry[];
   occupation: string;
   family: FamilyMember[];
@@ -62,11 +63,20 @@ export const biodata: Biodata = {
     { icon: "Map", label: "Maternal Native (Mosal)", value: "Rupal, Gandhinagar" },
     { icon: "Home", label: "Current Residence", value: "Niagara Falls, Ontario, Canada" },
   ],
-  contactInfo: {
-    mobile: "+91 9998033450",
-    email: "dhruvparekh6dec@gmail.com",
-    whatsapp: "+919998033450",
-  },
+  contactInfo: [
+    {
+      name: "Dhruv Parekh (Self)",
+      mobile: "+1 (437) 933-8851",
+      email: "dhruvparekh6dec@gmail.com",
+      whatsapp: "+1 (437) 933-8851",
+    },
+    {
+      name: "Alpeshkumar Parekh (Father)",
+      mobile: "+91 9876543210", // Placeholder
+      email: "alpeshkumar@example.com", // Placeholder
+      whatsapp: "+919876543210",
+    }
+  ],
   education: [
     {
       degree: "Post Graduate Certificates",

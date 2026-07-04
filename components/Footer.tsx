@@ -50,9 +50,9 @@ export default function Footer() {
           className="flex items-center justify-center gap-4 mb-8"
         >
           {[
-            { icon: Phone, href: `tel:${biodata.contactInfo.mobile.replace(/\s|\(|\)|-/g, "")}`, label: "Call" },
-            { icon: Mail, href: `mailto:${biodata.contactInfo.email}`, label: "Email" },
-            { icon: MessageCircle, href: `https://wa.me/${biodata.contactInfo.whatsapp}`, label: "WhatsApp" },
+            { icon: Phone, href: `tel:${biodata.contactInfo[0].mobile.replace(/\s|\(|\)|-/g, "")}`, label: "Call" },
+            { icon: Mail, href: `mailto:${biodata.contactInfo[0].email}`, label: "Email" },
+            { icon: MessageCircle, href: `https://wa.me/${biodata.contactInfo[0].whatsapp}`, label: "WhatsApp" },
           ].map((item) => (
             <a
               key={item.label}

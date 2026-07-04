@@ -6,62 +6,85 @@ import SectionWrapper from "./SectionWrapper";
 import SectionTitle from "./SectionTitle";
 import { Phone, Mail, MessageCircle } from "lucide-react";
 
-const contactItems = [
-  {
-    icon: Phone,
-    label: "Mobile",
-    value: biodata.contactInfo.mobile,
-    href: `tel:${biodata.contactInfo.mobile.replace(/\s|\(|\)|-/g, "")}`,
-    bg: "rgba(122,31,61,0.1)",
-    iconColor: "#7A1F3D",
-  },
-  {
-    icon: Mail,
-    label: "Email",
-    value: biodata.contactInfo.email,
-    href: `mailto:${biodata.contactInfo.email}`,
-    bg: "rgba(212,175,55,0.12)",
-    iconColor: "#C19A2E",
-  },
-  {
-    icon: MessageCircle,
-    label: "WhatsApp",
-    value: "Send a message",
-    href: `https://wa.me/${biodata.contactInfo.whatsapp}`,
-    bg: "rgba(34,139,34,0.08)",
-    iconColor: "#228B22",
-  },
-];
-
 export default function ContactInfo() {
+  const contactCategories = [
+    {
+      icon: Phone,
+      label: "Mobile",
+      bg: "rgba(122,31,61,0.1)",
+      iconColor: "#7A1F3D",
+      items: biodata.contactInfo.map((contact) => ({
+        name: contact.name.includes("Self") ? "Dhruv" : "Alpeshkumar",
+        value: contact.mobile,
+        href: `tel:${contact.mobile.replace(/\s|\(|\)|-/g, "")}`,
+      })),
+    },
+    {
+      icon: Mail,
+      label: "Email",
+      bg: "rgba(212,175,55,0.12)",
+      iconColor: "#C19A2E",
+      items: biodata.contactInfo
+        .filter(contact => contact.name.includes("Self"))
+        .map((contact) => ({
+          name: contact.name.includes("Self") ? "Dhruv" : "Alpeshkumar",
+          value: contact.email,
+          href: `mailto:${contact.email}`,
+      })),
+    },
+    {
+      icon: MessageCircle,
+      label: "WhatsApp",
+      bg: "rgba(34,139,34,0.08)",
+      iconColor: "#228B22",
+      items: biodata.contactInfo.map((contact) => ({
+        name: contact.name.includes("Self") ? "Dhruv" : "Alpeshkumar",
+        value: "Send Message",
+        href: `https://wa.me/${contact.whatsapp}`,
+        external: true,
+      })),
+    },
+  ];
+
   return (
     <SectionWrapper id="contact">
       <SectionTitle title="Get in Touch" subtitle="Let&rsquo;s start a conversation" />
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto">
-        {contactItems.map((item, index) => {
-          const Icon = item.icon;
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-8">
+        {contactCategories.map((category, index) => {
+          const Icon = category.icon;
           return (
-            <motion.a
-              key={item.label}
-              href={item.href}
-              target={item.label === "WhatsApp" ? "_blank" : undefined}
-              rel={item.label === "WhatsApp" ? "noopener noreferrer" : undefined}
+            <motion.div
+              key={category.label}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.12 }}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className="card-glass rounded-2xl p-6 md:p-8 text-center group cursor-pointer"
+              className="card-glass rounded-3xl p-6 md:p-8 text-center flex flex-col items-center group"
             >
               <div
-                className="w-14 h-14 mx-auto rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
-                style={{ background: item.bg }}
+                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+                style={{ background: category.bg }}
               >
-                <Icon size={24} style={{ color: item.iconColor }} />
+                <Icon size={28} style={{ color: category.iconColor }} />
               </div>
-              <p className="label-caps mb-2" style={{ color: "#D4AF37" }}>{item.label}</p>
-              <p className="font-body text-sm md:text-[15px] font-semibold break-all" style={{ color: "#2B2B2B" }}>{item.value}</p>
-            </motion.a>
+              <h3 className="label-caps mb-6 text-lg" style={{ color: "#D4AF37" }}>{category.label}</h3>
+              
+              <div className="flex flex-col gap-3 w-full">
+                {category.items.map((item, i) => (
+                  <a
+                    key={i}
+                    href={item.href}
+                    target={(item as any).external ? "_blank" : undefined}
+                    rel={(item as any).external ? "noopener noreferrer" : undefined}
+                    className="flex flex-col items-center justify-center py-3 px-2 rounded-xl hover:bg-white/40 transition-all border border-transparent hover:border-[#D4AF37]/30 hover:shadow-sm"
+                  >
+                    <span className="text-[11px] font-bold text-[#7A1F3D] mb-1 uppercase tracking-widest">{item.name}</span>
+                    <span className="font-body text-[15px] font-semibold text-[#2B2B2B] break-all">{item.value}</span>
+                  </a>
+                ))}
+              </div>
+            </motion.div>
           );
         })}
       </div>

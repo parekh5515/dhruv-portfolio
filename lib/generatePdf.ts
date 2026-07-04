@@ -112,8 +112,9 @@ export const generateBiodataPdf = async () => {
     y += 4;
 
     const personalData = [
-      ["Mobile", biodata.contactInfo.mobile],
-      ["Email", biodata.contactInfo.email],
+      ["Mobile (Self)", biodata.contactInfo[0].mobile],
+      ["Mobile (Father)", biodata.contactInfo[1].mobile],
+      ["Email", biodata.contactInfo[0].email],
       ["Date of Birth", biodata.personalDetails.find(d => d.label.includes("Birth"))?.value || ""],
       ["Height", biodata.personalDetails.find(d => d.label === "Height")?.value || ""],
       ["Religion / Caste", `${biodata.personalDetails.find(d => d.label === "Religion")?.value} - ${biodata.personalDetails.find(d => d.label === "Caste")?.value}`],
