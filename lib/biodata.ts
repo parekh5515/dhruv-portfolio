@@ -121,5 +121,6 @@ export const navLinks = [
   { label: "Details", href: "#details" },
   { label: "Education", href: "#education" },
   { label: "Family", href: "#family" },
+  { label: "Gallery", href: "#gallery" },
   { label: "Contact", href: "#contact" },
 ];

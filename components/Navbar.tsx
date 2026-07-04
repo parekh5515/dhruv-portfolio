@@ -15,13 +15,26 @@ export default function Navbar() {
       setScrolled(window.scrollY > 60);
       const sections = navLinks.map((l) => l.href.replace("#", ""));
       let current = "";
+      
+      // Use a more generous threshold (middle of the screen) to detect active sections
+      const threshold = window.innerHeight / 3;
+      
       for (const id of sections) {
         const el = document.getElementById(id);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 120) current = id;
+          if (rect.top <= threshold) {
+            current = id;
+          }
         }
       }
+
+      // Fallback: If we're at the absolute bottom of the page, highlight the last section
+      const isAtBottom = window.innerHeight + Math.round(window.scrollY) >= document.body.offsetHeight - 50;
+      if (isAtBottom && sections.length > 0) {
+        current = sections[sections.length - 1];
+      }
+
       setActiveSection(current);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
